@@ -1,0 +1,49 @@
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "sangak1st",
+    "password": "1234"
+}
+
+###
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "sangak1st",
+    "password": "1234"
+}
+
+
+###
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTA3MGRkOWU4OWI0NzViZThkNjk5YjgiLCJpYXQiOjE2OTUwMDQ2NDh9.uJfPCz7P0tHhLm4sZ-4H0cQUc1y8GZm6JFDAXjGkcYM
+
+{
+    "title": "CSS",
+    "description": "Học CSS",
+    "url": "https://www.w3schools.com/css/default.asp",
+    "status": "LEARNED"
+}
+
+###
+GET http://localhost:5000/api/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTA3MGQzMDRkMTg0MzYyZGM4ZmJkZTEiLCJpYXQiOjE2OTUwMDQ4ODh9.2mv07l5JZiyNPE1mL2sjbNS1FvL_kTU1wi4AB3cR9x4
+
+###
+PUT  http://localhost:5000/api/posts/6507b7c5f966f5d5f6400ade
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTA3MGQzMDRkMTg0MzYyZGM4ZmJkZTEiLCJpYXQiOjE2OTUwMjgwMjl9.Maxsoq7L4xIQU2LFgnFjzwQueJlynLE-uBrIFpr_Gvs
+
+{
+    "title": "JAVA",
+    "description": "Học JAVA trên W3School",
+    "url": "https://www.w3schools.com/java/default.asp",
+    "status": "TO LEARN"
+}
+
+###
+DELETE  http://localhost:5000/api/posts/6507b7c5f966f5d5f6400ade
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTA3MGQzMDRkMTg0MzYyZGM4ZmJkZTEiLCJpYXQiOjE2OTUwMjgwMjl9.Maxsoq7L4xIQU2LFgnFjzwQueJlynLE-uBrIFpr_Gvs
