@@ -1,0 +1,19 @@
+.authForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../image/login_register_image.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+
+  .loginForm {
+    width: 350px;
+
+    input {
+      box-shadow: none;
+    }
+  }
+}
