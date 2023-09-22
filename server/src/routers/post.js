@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
-const verifyTooken = require("../middleware/auth");
+const verifyToken = require("../middleware/auth");
 
 //[POST] api/posts
 //Create post
 //Private
-router.post("/", verifyTooken, async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   const { title, description, url, status } = req.body;
   if (!title) {
     return res.status(400).json({
@@ -43,7 +43,7 @@ router.post("/", verifyTooken, async (req, res) => {
 //[GET] api/posts
 //read post
 //Private
-router.get("/", verifyTooken, async (req, res) => {
+router.get("/", verifyToken, async (req, res) => {
   try {
     const posts = await Post.find({ user: req.userId }).populate("user", [
       "username",
@@ -61,7 +61,7 @@ router.get("/", verifyTooken, async (req, res) => {
 //[PUT] api/posts
 //Update post
 //Private
-router.put("/:id", verifyTooken, async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
   const { title, description, url, status } = req.body;
   if (!title) {
     return res.status(400).json({
@@ -111,7 +111,7 @@ router.put("/:id", verifyTooken, async (req, res) => {
 //[DELETE] api/posts
 //Update post
 //Private
-router.delete("/:id", verifyTooken, async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
   try {
     const postDeleteCondition = { _id: req.params.id, user: req.userId };
     const deletedPost = await Post.findOneAndDelete(postDeleteCondition);

@@ -1,8 +1,35 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const verifyToken = require("../middleware/auth");
 
 const router = express.Router();
+
+//[GET]api/auth
+//Check if user is logged in
+//public
+router.get("/", verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "User not found",
+      });
+    } else {
+      return res.json({
+        success: true,
+        user,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+});
 
 //[POST] api/auth/register
 //Register user
@@ -14,7 +41,7 @@ router.post("/register", async (req, res) => {
   if (!username || !password) {
     return res.status(400).json({
       success: false,
-      message: "Missing username and/or password",
+      message: "Missing username and/or password and/or re-password",
     });
   } else {
     try {
