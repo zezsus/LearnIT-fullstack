@@ -17,3 +17,33 @@
     }
   }
 }
+
+.addForm {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .contentAddForm {
+    width: 350px;
+    background-color: rgb(187, 204, 248);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0px 3px 15px;
+  }
+}
+
+.editForm {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .contentEditForm {
+    width: 350px;
+    background-color: rgb(242, 242, 120);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0px 3px 15px;
+  }
+}

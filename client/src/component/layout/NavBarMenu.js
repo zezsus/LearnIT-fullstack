@@ -1,14 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { MdLogout } from "react-icons/md";
+import { SiSololearn } from "react-icons/si";
+import { AuthContext } from "../../context/AuthContext";
 
 const NavBarMenu = () => {
+  const {
+    authState: { user },
+    logoutUser,
+  } = useContext(AuthContext);
+
+  const username = user ? user.username : "";
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    console.log("logout");
+    logoutUser();
+    navigate("/login");
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/home">
+          <NavLink
+            className="navbar-brand fs-3 fw-bold d-flex align-items-center"
+            to="/home">
+            <SiSololearn className="me-2" />
             LearnIT
-          </Link>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -19,22 +39,38 @@ const NavBarMenu = () => {
             aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div
+            className="collapse navbar-collapse fs-5 fw-bold ms-4 me-3"
+            id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" href="#">
+                <NavLink
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/home">
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="#">
-                  Link
-                </Link>
+                <NavLink className="nav-link" to="/about">
+                  About
+                </NavLink>
               </li>
             </ul>
+            <div className="d-flex align-items-center">
+              <span className="me-2 fs-6 fw-bold">{username}</span>
+              <button
+                type="button"
+                className="btn btn-outline-danger d-flex align-items-center"
+                onClick={handleLogout}>
+                <MdLogout size={20} className="me-1" />
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </nav>
+      <Outlet />
     </div>
   );
 };

@@ -2,8 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import "./assets/scss/App.scss";
 import Landing from "./component/layout/Landing";
 import Auth from "./views/Auth";
-import Home from "./views/Home";
-import ProtectedRounte from "./component/routing/ProtectedRounte";
+import AddForm from "./component/post/AddForm";
+import EditForm from "./component/post/EditForm";
+import Post from "./views/Post";
+import React from "react";
 
 function App() {
   return (
@@ -11,7 +13,12 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Auth authRouter="login" />} />
       <Route path="/register" element={<Auth authRouter="register" />} />
-      <Route path="/home" element={<Home />} />
+
+      <Route path="/home" element={<Post postRouter="home" />} />
+      <Route path="/about" element={<Post postRouter="about" />} />
+
+      <Route path="/add" element={<AddForm />} />
+      <Route path="/edit" element={<EditForm />} />
     </Routes>
   );
 }

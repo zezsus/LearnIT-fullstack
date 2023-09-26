@@ -6,14 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AuthContextProvider from "./context/AuthContext";
+import PostContextProvide from "./context/PostContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <PostContextProvide>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PostContextProvide>
     </AuthContextProvider>
   </React.StrictMode>
 );

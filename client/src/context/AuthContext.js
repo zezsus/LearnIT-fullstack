@@ -22,7 +22,6 @@ const AuthContextProvider = ({ children }) => {
     try {
       const response = await axios.get(`${apiUrl}/auth`);
       if (response.data.success) {
-        console.log(response.data.success);
         dispatch({
           type: "SET_AUTH",
           payload: {
@@ -83,11 +82,21 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  //Logut
+  const logoutUser = () => {
+    localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+    dispatch({
+      type: "SET_AUTH",
+      payload: { isAuthenticated: false, user: null },
+    });
+  };
+
   //Context data
   const authContextData = {
     loadUser,
     loginUser,
     registerUser,
+    logoutUser,
     authState,
     dispatch,
   };

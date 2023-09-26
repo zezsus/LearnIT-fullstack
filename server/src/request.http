@@ -19,12 +19,12 @@ Content-Type: application/json
 ###
 POST http://localhost:5000/api/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTA3MGRkOWU4OWI0NzViZThkNjk5YjgiLCJpYXQiOjE2OTUwMDQ2NDh9.uJfPCz7P0tHhLm4sZ-4H0cQUc1y8GZm6JFDAXjGkcYM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTA3MGQzMDRkMTg0MzYyZGM4ZmJkZTEiLCJpYXQiOjE2OTU2NTE3NDV9.2ss6JO7JLsWddQmrXpAZ83plYkGAMm6gX5l6TTaVpHI
 
 {
-    "title": "CSS",
-    "description": "Học CSS",
-    "url": "https://www.w3schools.com/css/default.asp",
+    "title": "C#",
+    "description": "Học C#",
+    "url": "https://www.w3schools.com/c#/default.asp",
     "status": "LEARNED"
 }
 
