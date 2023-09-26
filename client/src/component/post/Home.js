@@ -16,6 +16,7 @@ const Home = () => {
     postState: { posts, postsLoading },
     setShowAddPost,
     getPosts,
+    deletePost,
   } = useContext(PostContext);
 
   let body;
@@ -109,7 +110,8 @@ const Home = () => {
                       overlay={<Tooltip>Delete</Tooltip>}>
                       <button
                         type="button"
-                        className="btn btn-outline-danger d-flex align-items-center ms-2">
+                        className="btn btn-outline-danger d-flex align-items-center ms-2"
+                        onClick={deletePost.bind(this, items._id)}>
                         <MdDelete size={25} />
                       </button>
                     </OverlayTrigger>

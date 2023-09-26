@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { PostContext } from "../../context/PostContext";
 
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddForm = () => {
@@ -103,7 +103,6 @@ const AddForm = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <ToastContainer />
     </div>
   );
 };

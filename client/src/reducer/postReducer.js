@@ -28,6 +28,17 @@ export const postReducer = (state, action) => {
         posts: [...state.posts, action.payload],
       };
 
+    case EDIT_POST:
+      return {
+        ...state,
+      };
+
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== action.payload),
+      };
+
     default:
       return state;
   }

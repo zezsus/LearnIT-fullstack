@@ -57,8 +57,50 @@ const PostContextProvide = ({ children }) => {
           };
     }
   };
-  const editPost = () => {};
-  const deletePost = () => {};
+  const editPost = async (updatePost, postId) => {
+    try {
+      const response = await axios.post(
+        `${apiUrl}/posts/${postId}`,
+        updatePost
+      );
+
+      if (response.data.success) {
+        dispatch({
+          type: EDIT_POST,
+          payload: response.data.post,
+        });
+        return response.data;
+      }
+    } catch (error) {
+      return error.response.data
+        ? error.response.data
+        : {
+            success: false,
+            message: error.message,
+          };
+    }
+  };
+
+  const deletePost = async (postId) => {
+    try {
+      const response = await axios.delete(`${apiUrl}/posts/${postId}`);
+
+      if (response.data.success) {
+        dispatch({
+          type: DELETE_POST,
+          payload: postId,
+        });
+        return response.data;
+      }
+    } catch (error) {
+      return error.response.data
+        ? error.response.data
+        : {
+            success: false,
+            message: error.message,
+          };
+    }
+  };
 
   const postContextData = {
     getPosts,
