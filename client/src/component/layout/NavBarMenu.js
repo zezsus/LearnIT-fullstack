@@ -15,7 +15,6 @@ const NavBarMenu = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log("logout");
     logoutUser();
     navigate("/login");
   };

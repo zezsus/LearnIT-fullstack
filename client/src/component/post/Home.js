@@ -1,16 +1,20 @@
 import React, { useContext, useEffect } from "react";
+import { PostContext } from "../../context/PostContext";
+import AddForm from "../../component/post/AddForm";
+
 import { IoMdAdd } from "react-icons/io";
 import { BiEditAlt } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineLink } from "react-icons/ai";
-import { PostContext } from "../../context/PostContext";
+
 import Spinner from "react-bootstrap/esm/Spinner";
 import Card from "react-bootstrap/Card";
-import { Nav } from "react-bootstrap";
+import { Button, Nav, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const Home = () => {
   const {
     postState: { posts, postsLoading },
+    setShowAddPost,
     getPosts,
   } = useContext(PostContext);
 
@@ -28,7 +32,19 @@ const Home = () => {
     );
   } else {
     if (posts.length === 0) {
-      body = <p>KO cos phan tu nao</p>;
+      body = (
+        <Card className="text-center mx-5 my-5">
+          <Card.Body>
+            <Card.Title>Welcome to LearnIt</Card.Title>
+            <Card.Text>
+              Click the button below to track your first skill to learn
+            </Card.Text>
+            <Button variant="primary" onClick={setShowAddPost.bind(this, true)}>
+              LearnIt!
+            </Button>
+          </Card.Body>
+        </Card>
+      );
     } else {
       body = (
         <div className="d-flex flex-wrap justify-content-center">
@@ -43,19 +59,25 @@ const Home = () => {
                   : "danger"
               }
               key={items._id}>
-              <div className="m-3" style={{ width: "18rem" }}>
+              <div className="m-2" style={{ width: "18rem" }}>
                 <div className="card-body">
                   <div className="d-flex">
-                    <Card.Title className="mb-4 text-body-secondary ">
+                    <Card.Title className="mb-4 text-body-secondary w-100">
                       {items.title}
                     </Card.Title>
-                    <Nav.Link
-                      className="mb-3 text-primary w-100 text-end"
-                      variant="light"
-                      href={items.url}
-                      target="_blank">
-                      <AiOutlineLink size={25} />
-                    </Nav.Link>
+
+                    <div className="mb-3 text-primary">
+                      <OverlayTrigger
+                        placement="left"
+                        overlay={<Tooltip>Link to the learn</Tooltip>}>
+                        <Nav.Link
+                          variant="light"
+                          href={items.url}
+                          target="_blank">
+                          <AiOutlineLink size={25} />
+                        </Nav.Link>
+                      </OverlayTrigger>
+                    </div>
                   </div>
 
                   <Card
@@ -72,16 +94,25 @@ const Home = () => {
                   <div className="mb-3">{items.description}</div>
 
                   <div className="d-flex">
-                    <button
-                      type="button"
-                      className="btn btn-outline-warning d-flex align-items-center me-2">
-                      <BiEditAlt size={20} className="me-1" />
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline-danger d-flex align-items-center ms-2">
-                      <MdDelete size={20} className="me-1" />
-                    </button>
+                    <OverlayTrigger
+                      placement="bottom"
+                      overlay={<Tooltip>Edit</Tooltip>}>
+                      <button
+                        type="button"
+                        className="btn btn-outline-warning d-flex align-items-center me-2">
+                        <BiEditAlt size={25} />
+                      </button>
+                    </OverlayTrigger>
+
+                    <OverlayTrigger
+                      placement="bottom"
+                      overlay={<Tooltip>Delete</Tooltip>}>
+                      <button
+                        type="button"
+                        className="btn btn-outline-danger d-flex align-items-center ms-2">
+                        <MdDelete size={25} />
+                      </button>
+                    </OverlayTrigger>
                   </div>
                 </div>
               </div>
@@ -94,13 +125,17 @@ const Home = () => {
 
   return (
     <div className="m-3 ">
-      {body}
-      <button
-        type="button"
-        className="btn btn-primary d-flex align-items-center px-5">
-        <IoMdAdd size={20} className="me-1" />
-        Add
-      </button>
+      <OverlayTrigger placement="right" overlay={<Tooltip>Add</Tooltip>}>
+        <button
+          type="button"
+          className="btn btn-outline-primary rounded-circle p-2 "
+          onClick={setShowAddPost.bind(this, true)}>
+          <IoMdAdd size={25} />
+        </button>
+      </OverlayTrigger>
+
+      <div>{body}</div>
+      <AddForm />
     </div>
   );
 };
