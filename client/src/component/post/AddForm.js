@@ -23,11 +23,15 @@ const AddForm = () => {
 
   //add
   const handleAddPost = async () => {
-    const { message } = await addPost(newPost);
-    const notify = () => toast(message);
-    notify();
-
-    handelCloseAdd();
+    const { success, message } = await addPost(newPost);
+    if (success) {
+      const notify = () => toast.success(message);
+      notify();
+      handelCloseAdd();
+    } else {
+      const notify = () => toast.error(message);
+      notify();
+    }
   };
 
   //close
