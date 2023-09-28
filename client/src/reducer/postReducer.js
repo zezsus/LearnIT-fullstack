@@ -4,6 +4,7 @@ import {
   ADD_POST,
   EDIT_POST,
   DELETE_POST,
+  FIND_POST,
 } from "../context/containts";
 
 export const postReducer = (state, action) => {
@@ -27,10 +28,21 @@ export const postReducer = (state, action) => {
         ...state,
         posts: [...state.posts, action.payload],
       };
+    case FIND_POST:
+      return { ...state, post: action.payload };
 
     case EDIT_POST:
+      const updatePost = state.posts.map((post) => {
+        if (post._id === action.payload._id) {
+          return action.payload;
+        } else {
+          return post;
+        }
+      });
+
       return {
         ...state,
+        posts: updatePost,
       };
 
     case DELETE_POST:
