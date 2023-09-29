@@ -11,15 +11,16 @@ import Spinner from "react-bootstrap/esm/Spinner";
 import Card from "react-bootstrap/Card";
 import { Button, Nav, OverlayTrigger, Tooltip } from "react-bootstrap";
 import EditForm from "./EditForm";
+import DeleteForm from "./DeleteForm";
 
 const Home = () => {
   const {
     postState: { posts, postsLoading },
     setShowAddPost,
     setShowEditPost,
+    setShowDeletePost,
     getPosts,
     findPost,
-    deletePost,
   } = useContext(PostContext);
 
   let body;
@@ -31,6 +32,11 @@ const Home = () => {
   const handleEditPost = (postId) => {
     findPost(postId);
     setShowEditPost(true);
+  };
+
+  const handleDelete = (postId) => {
+    findPost(postId);
+    setShowDeletePost(true);
   };
 
   if (postsLoading) {
@@ -129,7 +135,7 @@ const Home = () => {
                         <button
                           type="button"
                           className="btn btn-outline-danger d-flex align-items-center ms-2"
-                          onClick={deletePost.bind(this, items._id)}>
+                          onClick={() => handleDelete(items._id)}>
                           <MdDelete size={25} />
                         </button>
                       </OverlayTrigger>
@@ -149,6 +155,7 @@ const Home = () => {
       <div>{body}</div>
       <AddForm />
       <EditForm />
+      <DeleteForm />
     </div>
   );
 };

@@ -22,6 +22,7 @@ const PostContextProvide = ({ children }) => {
 
   const [showAddPost, setShowAddPost] = useState(false);
   const [showEditPost, setShowEditPost] = useState(false);
+  const [showDeletePost, setShowDeletePost] = useState(false);
 
   //get all post
   const getPosts = async () => {
@@ -128,6 +129,8 @@ const PostContextProvide = ({ children }) => {
     setShowAddPost,
     showEditPost,
     setShowEditPost,
+    showDeletePost,
+    setShowDeletePost,
   };
   return (
     <PostContext.Provider value={postContextData}>
